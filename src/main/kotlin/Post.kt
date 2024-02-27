@@ -52,26 +52,28 @@ object WallService {
 
 open class Attachment(val type: String)
 
-data class PhotoAttachment(val url: String, val description: String) : Attachment("photo")  // фото наследник
+data class PhotoAttachment(val photo: Photo) : Attachment("photo")  // фото наследник
+data class Photo(val id: Int, val ownerId: Int, val text: String, val date: Long)
 
-data class AudioAttachment(val title: String, val artist: String) : Attachment("audio")  // аудио наследник
+data class AudioAttachment(val audio: Audio) : Attachment("audio")  // аудио наследник
+data class Audio(val id: Int, val ownerId: Int, val title: String, val duration: Int, val date: Long)
 
-data class VideoAttachment(val url: String, val duration: Int) : Attachment("video") //видео наследник
+data class VideoAttachment(val video : Video) : Attachment("video") //видео наследник
+data class Video(val id: Int, val ownerId: Int, val title: String, val duration: Int)
 
-data class DocumentAttachment(val url: String, val author: String) : Attachment("document")
+data class DocumentAttachment(val document: Document) : Attachment("document")
+data class Document(val id: Int, val ownerId: Int, val title: String, val size: Int ,val url: String)
 
-data class LinktAttachment(val url: String, val title: String) : Attachment("link")
+data class LinkAttachment(val link: Link) : Attachment("link")
+data class Link(val url: String,val title: String,val caption: String)
 
 
 fun main() {
 
     val attachments = listOf(
-        PhotoAttachment(
-            "https://sun9-67.userapi.com/impg/P1fDGDk2DuW9wtva2Mg0yFO5O44fdIjrjRTFWw/EC2UsluBYQQ.jpg?size=853x1280&quality=95&sign=ae54302b4ccc9793cf5b85adde759a33&type=album",
-            "Mark"
-        ),
-        AudioAttachment("Название аудио", "Исполнитель"),
-        VideoAttachment("http://example.com/video1", 120)
+        PhotoAttachment(Photo(1,1,"Me",215141)),
+        AudioAttachment(Audio(1,1,"My_song",2545,151541)),
+        VideoAttachment(Video(1,1,"MY_day",2654568))
     )
     val likes = Likes(99)
     WallService.add(Post(1, "Me", 2983, "hello post", likes, attachments))

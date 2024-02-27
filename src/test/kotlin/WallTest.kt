@@ -11,12 +11,9 @@ class WallServiceTest {
     }
 
     val attachments = listOf(
-        PhotoAttachment(
-            "https://sun9-67.userapi.com/impg/P1fDGDk2DuW9wtva2Mg0yFO5O44fdIjrjRTFWw/EC2UsluBYQQ.jpg?size=853x1280&quality=95&sign=ae54302b4ccc9793cf5b85adde759a33&type=album",
-            "Mark"
-        ),
-        AudioAttachment("Название аудио", "Исполнитель"),
-        VideoAttachment("http://example.com/video1", 120)
+        PhotoAttachment(Photo(1,1,"Me",215141)),
+        AudioAttachment(Audio(1,1,"My_song",2545,151541)),
+        VideoAttachment(Video(1,1,"MY_day",2654568))
     )
     @Test
     fun testAddPost() { // Тест на дол=бавление поста
